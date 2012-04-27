@@ -1,0 +1,28 @@
+Fecha: 26-04-2012
+Problema: Ver desde otras maquinas lo que apache muestra en localhost
+Solucion:
+	1.- Las máquinas deben estar en Red Lan
+	2.- Configurar el HOST de la maquina servidora
+		vim /etc/hosts
+			127.0.0.1	lokcito
+			127.0.0.1	wsgi.lokcito
+			127.0.0.1	ray
+	
+	3.- Configurar el ServerName de apache
+		vim /etc/apache2/apache2.conf/ 
+
+	4.- Configurar los Sites Diponibles
+		cp /etc/apache2/sites-available/default /etc/apache2/sites-available/backup-default
+		cp /etc/apache2/sites-available/default /etc/apache2/sites-available/mi-configuracion
+
+		Para desabilitar configuraciónes:
+			sudo a2dissite configuracion
+		Para habilitar configuraciones:
+			sudo a2ensite configuracion
+
+Bibliografia:
+	https://help.ubuntu.com/10.04/serverguide/httpd.html
+	http://blog.stannard.net.au/2010/12/11/installing-django-with-apache-and-mod_wsgi-on-ubuntu-10-04/
+
+
+

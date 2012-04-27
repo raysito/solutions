@@ -1,0 +1,38 @@
+Primero leer el archivo apache de esta misma carpeta
+Para levantar con mog_wsgi y virtualenv ubuntu 11.10:
+	Ramas:
+		/home/ray/
+				proyecto/
+					aplicacion/
+					settings
+					manage
+					django.wsgi
+	crear un archivo dentro del proyecto:
+		/home/ray/proyecto/django.wsgi (el nombre puede variar)
+		el contenido es el siguiente:
+			import os
+			import sys
+			import site
+			root_dir = os.path.abspath(os.path.dirname(__file__))
+			# print root_dir >> /home/ray/proyecto
+			sys.path.append(root_dir)
+			# Agregamos el Virtualenv
+			sys.path.append('/home/ray/Documentos/dev/django-mysql/lib/python2.7/site-packages')
+			sys.path.insert(0, os.path.join(os.path.abspath(os.path.dirname(__file__)),'..'))
+			os.environ['DJANGO_SETTINGS_MODULE'] = 'endulza.settings'
+			import django.core.handlers.wsgi
+			application = django.core.handlers.wsgi.WSGIHandler()
+	
+	Para base de datos sqlite3
+		En algunos casos cambiando los permisos a la base de datos (no está probado)
+		Pero en el ENGINE del settings del django colocar la dirección completa
+		es decir: /home/ray/proyecto/base_de_datos
+	
+Bibliografia:
+	http://pydemo.com/how-to-fix-importerror-could-not-import-settings-django-wsgi/
+
+	http://www.morethanseven.net/2009/07/27/fabric-django-git-apache-mod_wsgi-virtualenv-and-p.html
+
+	http://eleclerc.ca/2009/03/26/django-virtualenv-and-mod_wsgi/
+
+
